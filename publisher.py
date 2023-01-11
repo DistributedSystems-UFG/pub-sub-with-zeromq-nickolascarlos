@@ -30,8 +30,15 @@ def rep_thread(_rep_s, _pub_s):
 		if command == 'sub':
 			_pub_s.send_string('%s %s' % (dest, message))
 		elif command == 'usr':
+			e_s = context.socket(zmq.REQ)
+			user_ip, user_port = registry[dest]
+			user_addr = f"tcp://{user_ip}:{user_port}"
+			# print('USER_ADDR::: ' + user_addr)
 			print('... Enviando mensagem para ' + dest + ': ' + message)
-
+			e_s.connect(user_addr)
+			e_s.send_string(message)
+			e_s.recv()
+			e_s.close()
 		_rep_s.send_string('ok')
 
 
