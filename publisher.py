@@ -25,7 +25,7 @@ while True:
 		# Se o primeiro termo de raw_message for 'usr'
 		# envia a mensagem para o usuário de nome {dest}
 		elif command == 'usr':
-			print(f'Enviando mensagem para {dest}: {message}')
+			print(f'Enviando mensagem para o usuário {dest}: {message}')
 			user_ip, user_port = registry[dest]
 			user_addr = f"tcp://{user_ip}:{user_port}"
 			direct_s = context.socket(zmq.REQ)
